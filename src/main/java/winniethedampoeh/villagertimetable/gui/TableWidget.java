@@ -37,7 +37,7 @@ public class TableWidget extends ClickableWidget {
     }
 
     @Override
-    protected void renderButton(DrawContext context, int mouseX, int mouseY, float delta) {
+    protected void renderWidget(DrawContext context, int mouseX, int mouseY, float delta) {
         context.getMatrices().push();
         context.getMatrices().scale(scale, scale, 1.0f);
         context.drawTexture(texture, texture_x, texture_y, regionWidth, regionHeight, u, v, regionWidth, regionHeight, textureWidth, textureHeight);

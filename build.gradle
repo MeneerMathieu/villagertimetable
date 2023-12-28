@@ -34,8 +34,8 @@ dependencies {
 
 	// modImplementation "net.fabricmc.fabric-api:fabric-api-deprecated:${project.fabric_version}"
 
-	// ModMenu.
-	modApi "com.terraformersmc:modmenu:7.1.0"
+	// ModMenu. https://linkie.shedaniel.dev/
+	modApi "com.terraformersmc:modmenu:9.0.0"
 }
 
 processResources {
