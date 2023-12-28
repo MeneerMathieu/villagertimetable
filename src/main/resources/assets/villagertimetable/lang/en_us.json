@@ -1,0 +1,35 @@
+{
+  "options.villagertimetable.title": "Villager Timetable Configuration",
+  "options.villagertimetable.hud_rendering": "HUD Rendering",
+  "options.villagertimetable.time_format": "Time Format",
+  "options.villagertimetable.render_location": "Render location",
+
+  "options.villagertimetable.time_format.ticks": "Ticks",
+  "options.villagertimetable.time_format.12h": "12H",
+  "options.villagertimetable.time_format.24h": "24H",
+
+  "options.villagertimetable.render_location.north_west": "Northwest",
+  "options.villagertimetable.render_location.north_east": "Northeast",
+  "options.villagertimetable.render_location.south_west": "Southwest",
+  "options.villagertimetable.render_location.south_east": "Southeast",
+  "options.villagertimetable.render_location.hotbar_left": "Hotbar Left",
+  "options.villagertimetable.render_location.hotbar_right": "Hotbar Right",
+
+  "options.villagertimetable.hud_rendering.tooltip": "Whether or not the current villager cycle is rendered in your HUD",
+  "options.villagertimetable.time_format.tooltip": "12h, 24h or ticks",
+  "options.villagertimetable.render_location.tooltip": "Where to render the current villager cycle in your HUD",
+
+  "category.villagertimetable": "Villager Timetable",
+
+  "key.villagertimetable.open_timetable": "Open Timetable",
+
+  "tooltip.villagertimetable.sleep": "Sleep",
+  "tooltip.villagertimetable.idle": "Wander",
+  "tooltip.villagertimetable.work": "Work",
+  "tooltip.villagertimetable.socialize": "Socialize",
+  "tooltip.villagertimetable.play": "Play",
+
+  "tooltip.villagertimetable.employed": "Employed",
+  "tooltip.villagertimetable.unemployed": "Unemployed",
+  "tooltip.villagertimetable.baby": "Baby"
+}
