@@ -46,7 +46,7 @@ public class VillagerTimetableScreen extends Screen {
 
     @Override
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
-        renderBackground(context);
+        renderBackground(context, mouseX, mouseY, delta);
 
         super.render(context, mouseX, mouseY, scale); // Drawables
 
@@ -190,8 +190,8 @@ public class VillagerTimetableScreen extends Screen {
     }
 
     @Override
-    public void renderBackground(DrawContext context) {
-        super.renderBackground(context);
+    public void renderBackground(DrawContext context, int mouseX, int mouseY, float delta) {
+        super.renderBackground(context, mouseX, mouseY, delta);
         context.drawTexture(SCREEN_TEXTURE, x, y, width, height, 0, 0, 820, 244, 1024, 1024);
     }
 
