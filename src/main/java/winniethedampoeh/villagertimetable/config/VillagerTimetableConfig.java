@@ -27,6 +27,10 @@ public class VillagerTimetableConfig {
         INSTANCE.load();
     }
 
+    public static void loadConfig() {
+        // Needs no body
+    }
+
     protected final File file;
     protected final Object2ObjectLinkedOpenHashMap<String, Option<?>> optionMap = new Object2ObjectLinkedOpenHashMap<>();
     protected final Map<String, Option<?>> optionMapView = Collections.unmodifiableMap(optionMap);

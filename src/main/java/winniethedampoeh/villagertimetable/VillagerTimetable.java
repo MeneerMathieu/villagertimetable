@@ -8,6 +8,7 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import winniethedampoeh.villagertimetable.config.VillagerTimetableConfig;
 import winniethedampoeh.villagertimetable.control.KeyBinds;
 import winniethedampoeh.villagertimetable.gui.VillagerScheduleOverlay;
 
@@ -29,11 +30,9 @@ public class VillagerTimetable implements ClientModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
 		HudRenderCallback.EVENT.register(new VillagerScheduleOverlay());
-		LOGGER.info("Hud done!");
 
 		KeyBinds.registerKeyBinds();
-		LOGGER.info("Keybinds done!");
 
-		LOGGER.info("Config done!");
+		VillagerTimetableConfig.loadConfig();
 	}
 }
