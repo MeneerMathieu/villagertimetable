@@ -5,6 +5,7 @@ import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.render.GameRenderer;
+import net.minecraft.client.render.RenderTickCounter;
 import net.minecraft.entity.ai.brain.Activity;
 import net.minecraft.util.Identifier;
 import winniethedampoeh.villagertimetable.Timetable;
@@ -12,19 +13,19 @@ import winniethedampoeh.villagertimetable.VillagerTimetable;
 import winniethedampoeh.villagertimetable.config.VillagerTimetableConfig;
 
 public class VillagerScheduleOverlay implements HudRenderCallback {
-    private static final Identifier SLEEPING = new Identifier(VillagerTimetable.MODID,
+    private static final Identifier SLEEPING = Identifier.tryParse(VillagerTimetable.MODID,
             "textures/hud/sleeping.png");
-    private static final Identifier IDLE = new Identifier(VillagerTimetable.MODID,
+    private static final Identifier IDLE = Identifier.tryParse(VillagerTimetable.MODID,
             "textures/hud/idle.png");
-    private static final Identifier WORKING = new Identifier(VillagerTimetable.MODID,
+    private static final Identifier WORKING = Identifier.tryParse(VillagerTimetable.MODID,
             "textures/hud/working.png");
-    private static final Identifier MEET = new Identifier(VillagerTimetable.MODID,
+    private static final Identifier MEET = Identifier.tryParse(VillagerTimetable.MODID,
             "textures/hud/meet.png");
-    private static final Identifier PLAYING = new Identifier(VillagerTimetable.MODID,
+    private static final Identifier PLAYING = Identifier.tryParse(VillagerTimetable.MODID,
             "textures/hud/playing.png");
 
     @Override
-    public void onHudRender(DrawContext drawContext, float tickDelta) {
+    public void onHudRender(DrawContext drawContext, RenderTickCounter tickCounter) {
         if(!VillagerTimetableConfig.INSTANCE.guiRendering.get()) return;
 
         Identifier icon = getScheduleIcon();

@@ -12,13 +12,13 @@ import winniethedampoeh.villagertimetable.config.VillagerTimetableConfig;
 import winniethedampoeh.villagertimetable.control.KeyBinds;
 
 public class VillagerTimetableScreen extends Screen {
-    public static final Identifier SCREEN_TEXTURE = new Identifier(VillagerTimetable.MODID,
+    public static final Identifier SCREEN_TEXTURE = Identifier.tryParse(VillagerTimetable.MODID,
             "textures/screen/timetable.png");
-    public static final Identifier BABY_VILLAGER = new Identifier(VillagerTimetable.MODID,
+    public static final Identifier BABY_VILLAGER = Identifier.tryParse(VillagerTimetable.MODID,
             "textures/screen/baby_villager.png");
-    public static final Identifier NITWIT = new Identifier(VillagerTimetable.MODID,
+    public static final Identifier NITWIT = Identifier.tryParse(VillagerTimetable.MODID,
             "textures/screen/nitwit.png");
-    public static final Identifier FARMER = new Identifier(VillagerTimetable.MODID,
+    public static final Identifier FARMER = Identifier.tryParse(VillagerTimetable.MODID,
             "textures/screen/farmer.png");
 
     private int x;
