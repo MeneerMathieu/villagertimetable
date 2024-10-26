@@ -5,6 +5,7 @@ import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.render.GameRenderer;
+import net.minecraft.client.render.RenderLayer;
 import net.minecraft.client.render.RenderTickCounter;
 import net.minecraft.entity.ai.brain.Activity;
 import net.minecraft.util.Identifier;
@@ -27,16 +28,16 @@ public class VillagerScheduleOverlay implements HudRenderCallback {
     @Override
     public void onHudRender(DrawContext drawContext, RenderTickCounter tickCounter) {
         if(!VillagerTimetableConfig.INSTANCE.guiRendering.get()) return;
-
+        if(MinecraftClient.getInstance().options.hudHidden) return;
         Identifier icon = getScheduleIcon();
 
-        RenderSystem.setShader(GameRenderer::getPositionTexProgram);
-        RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
-        RenderSystem.setShaderTexture(0, icon);
+//        RenderSystem.setShader(GameRenderer::getPositionTexProgram);
+//        RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
+//        RenderSystem.setShaderTexture(0, icon);
 
         int[] dims = getDrawDimensions();
 
-        drawContext.drawTexture(icon, dims[0], dims[1], 0, 0, dims[2], dims[3], dims[2], dims[3]);
+        drawContext.drawTexture(RenderLayer::getGuiTextured, icon, dims[0], dims[1], 0, 0, dims[2], dims[3], dims[2], dims[3]);
     }
 
     private Identifier getScheduleIcon() {
