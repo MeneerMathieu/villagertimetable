@@ -1,0 +1,35 @@
+{
+  "options.villagertimetable.title": "Конфигурация Villager Timetable",
+  "options.villagertimetable.hud_rendering": "Визуализация HUD",
+  "options.villagertimetable.time_format": "Формат времени",
+  "options.villagertimetable.render_location": "Местоположение HUD",
+
+  "options.villagertimetable.time_format.ticks": "Тики",
+  "options.villagertimetable.time_format.12h": "12Ч",
+  "options.villagertimetable.time_format.24h": "24Ч",
+
+  "options.villagertimetable.render_location.north_west": "Сверху слева",
+  "options.villagertimetable.render_location.north_east": "Сверху справа",
+  "options.villagertimetable.render_location.south_west": "Снизу слева",
+  "options.villagertimetable.render_location.south_east": "Снизу справа",
+  "options.villagertimetable.render_location.hotbar_left": "Хотбар слева",
+  "options.villagertimetable.render_location.hotbar_right": "Хотбар справа",
+
+  "options.villagertimetable.hud_rendering.tooltip": "Отображается ли текущий цикл жителей в вашем интерфейсе",
+  "options.villagertimetable.time_format.tooltip": "12 часов, 24 часа или тики",
+  "options.villagertimetable.render_location.tooltip": "Где отображать текущий цикл жизни жителей, в пользовательском интерфейсе",
+
+  "category.villagertimetable": "Villager Timetable",
+
+  "key.villagertimetable.open_timetable": "Открыть расписание",
+
+  "tooltip.villagertimetable.sleep": "Спит",
+  "tooltip.villagertimetable.idle": "Бродит",
+  "tooltip.villagertimetable.work": "Работает",
+  "tooltip.villagertimetable.socialize": "Общается",
+  "tooltip.villagertimetable.play": "Играет",
+
+  "tooltip.villagertimetable.employed": "Работающий",
+  "tooltip.villagertimetable.unemployed": "Нищий",
+  "tooltip.villagertimetable.baby": "Ребёнок"
+}
