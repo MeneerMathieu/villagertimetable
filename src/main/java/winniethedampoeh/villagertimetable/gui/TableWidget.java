@@ -1,10 +1,9 @@
 package winniethedampoeh.villagertimetable.gui;
 
-import com.mojang.blaze3d.pipeline.RenderPipeline;
+import net.minecraft.client.gl.RenderPipelines;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder;
 import net.minecraft.client.gui.widget.ClickableWidget;
-import net.minecraft.client.render.RenderLayer;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
@@ -40,7 +39,7 @@ public class TableWidget extends ClickableWidget {
     protected void renderWidget(DrawContext context, int mouseX, int mouseY, float delta) {
         context.getMatrices().pushMatrix();
         context.getMatrices().scale(scale, scale);
-        context.drawTexture(RenderPipeline.builder().build(),
+        context.drawTexture(RenderPipelines.GUI_TEXTURED,
                 texture,
                 texture_x,
                 texture_y,
