@@ -49,7 +49,7 @@ public class VillagerTimetableScreen extends Screen {
     public void render(DrawContext context, int mouseX, int mouseY, float delta) {
         super.render(context, mouseX, mouseY, delta); // Drawables
 
-        drawTimeTable(context, mouseX, mouseY, delta);
+        drawTimeTable();
         drawTimeIndicator(context);
         drawVillagers(context);
         drawTimeValues(context);
@@ -67,7 +67,7 @@ public class VillagerTimetableScreen extends Screen {
         context.getMatrices().popMatrix();
     }
 
-    private void drawTimeTable(DrawContext context, int mouseX, int mouseY, float delta) {
+    private void drawTimeTable() {
         TableWidget sleep_employed = new TableWidget(scale, SCREEN_TEXTURE, 1024, 1024, 192, 64, (int) (x / scale + 46), (int) (y / scale + 25), 192, 64, 0 ,245, Text.of("test"));
         sleep_employed.setTooltip(Tooltip.of(Text.translatable("tooltip." + VillagerTimetable.MODID + ".sleep")));
         addDrawableChild(sleep_employed);
@@ -122,15 +122,15 @@ public class VillagerTimetableScreen extends Screen {
         sleep_child2.setTooltip(Tooltip.of(Text.translatable("tooltip." + VillagerTimetable.MODID + ".sleep")));
         addDrawableChild(sleep_child2);
     }
-
-    int[] convertTextureCoord(int x, int y) {
-        int[] newCoord = new int[2];
-
-        newCoord[0] = this.x + (int)(scale * x);
-        newCoord[1] = this.y + (int)(scale * y);
-
-        return newCoord;
-    }
+//
+//    int[] convertTextureCoord(int x, int y) {
+//        int[] newCoord = new int[2];
+//
+//        newCoord[0] = this.x + (int)(scale * x);
+//        newCoord[1] = this.y + (int)(scale * y);
+//
+//        return newCoord;
+//    }
 
     int intLerp(int i1, int i2, float frac) {
         return (int) ((1 - frac) * i1 + frac * i2);
@@ -169,8 +169,7 @@ public class VillagerTimetableScreen extends Screen {
                     }
                 }
                 case H12 -> {
-                    int time = i;
-                    time = i % 12;
+                    int time = i % 12;
                     if (time == 0) time = 12;
 
                     String suffix;
@@ -182,8 +181,7 @@ public class VillagerTimetableScreen extends Screen {
                 case TICKS -> {
                     int time = ((i - 6) % 24);
                     if (time < 0) time += 24;
-                    if (time < 10) timeText = Text.of(String.valueOf(time * 1000));
-                    else timeText = Text.of(String.format("%dk", time));
+                    timeText = Text.of(String.format("%dk", time));
                 }
             }
 
