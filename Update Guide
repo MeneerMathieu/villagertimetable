@@ -8,5 +8,5 @@ How to update the project to the next Minecraft version.
 2. Update gradle.properties with info from https://fabricmc.net/develop and https://linkie.shedaniel.dev/
 3. Reload Gradle (This might take a while)
 4. If code changes are needed, make them.
-
-5. Done :D
+5. Build the project and upload to Modrinth.
+6. Done :D

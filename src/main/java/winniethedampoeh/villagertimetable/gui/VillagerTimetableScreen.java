@@ -1,5 +1,6 @@
 package winniethedampoeh.villagertimetable.gui;
 
+import com.mojang.blaze3d.pipeline.RenderPipeline;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.gui.screen.Screen;
@@ -59,15 +60,15 @@ public class VillagerTimetableScreen extends Screen {
     }
 
     private void drawVillagers(DrawContext context) {
-        context.getMatrices().push();
-        context.getMatrices().scale(scale, scale, 1f);
+        context.getMatrices().pushMatrix();
+        context.getMatrices().scale(scale, scale);
 
-        context.drawTexture(RenderLayer::getGuiTextured ,FARMER, (int) (x / scale + 8), (int) (y / scale + 25), 0, 0, 32, 64, 410, 820, 410, 820);
-        context.drawTexture(RenderLayer::getGuiTextured, NITWIT, (int) (x / scale + 8), (int) (y / scale + 95), 0, 0, 32, 64, 410, 820, 410, 820);
-        context.drawTexture(RenderLayer::getGuiTextured, BABY_VILLAGER, (int) (x / scale + 8), (int) (y / scale + 165), 0, 0, 32, 64, 410, 820, 410, 820);
+        context.drawTexture(RenderPipeline.builder().build() ,FARMER, (int) (x / scale + 8), (int) (y / scale + 25), 0, 0, 32, 64, 410, 820, 410, 820);
+        context.drawTexture(RenderPipeline.builder().build(), NITWIT, (int) (x / scale + 8), (int) (y / scale + 95), 0, 0, 32, 64, 410, 820, 410, 820);
+        context.drawTexture(RenderPipeline.builder().build(), BABY_VILLAGER, (int) (x / scale + 8), (int) (y / scale + 165), 0, 0, 32, 64, 410, 820, 410, 820);
 
 
-        context.getMatrices().pop();
+        context.getMatrices().popMatrix();
     }
 
     private void drawTimeTable(DrawContext context, int mouseX, int mouseY, float delta) {
@@ -144,21 +145,21 @@ public class VillagerTimetableScreen extends Screen {
         float timeFrac = ((MinecraftClient.getInstance().world.getTimeOfDay() + 6000) % 24000)/ 24000f;
 
         int time_x = intLerp(46, 810, timeFrac);
-        context.getMatrices().push();
-        context.getMatrices().scale(scale, scale, 1f);
-        context.drawTexture(RenderLayer::getGuiTextured, SCREEN_TEXTURE, (int) (x / scale + time_x), (int) (y / scale + 8),
+        context.getMatrices().pushMatrix();
+        context.getMatrices().scale(scale, scale);
+        context.drawTexture(RenderPipeline.builder().build(), SCREEN_TEXTURE, (int) (x / scale + time_x), (int) (y / scale + 8),
                 821,
                 0,
                 3,
                 221,
                 3, 221, 1024, 1024);
 
-        context.getMatrices().pop();
+        context.getMatrices().popMatrix();
     }
 
     private void drawTimeValues(DrawContext context){
-        context.getMatrices().push();
-        context.getMatrices().scale(scale, scale, 1f);
+        context.getMatrices().pushMatrix();
+        context.getMatrices().scale(scale, scale);
 
         for (int i = 0; i < 24; i++) {
             Text timeText = null;
@@ -193,13 +194,13 @@ public class VillagerTimetableScreen extends Screen {
             int offset = (int) ((32 - textRenderer.getWidth(timeText) ) / (1 / scale));
             context.drawText(textRenderer, timeText, (int) ((1 / scale) * x + 46 + offset + i * 32), (int)( (1 / scale) * y + 9), 0x4a4a4a, false);
         }
-        context.getMatrices().pop();
+        context.getMatrices().popMatrix();
     }
 
     @Override
     public void renderBackground(DrawContext context, int mouseX, int mouseY, float delta) {
         super.renderBackground(context, mouseX, mouseY, delta);
-        context.drawTexture(RenderLayer::getGuiTextured, SCREEN_TEXTURE, x, y, 0, 0, width, height, 820, 244, 1024, 1024);
+        context.drawTexture(RenderPipeline.builder().build(), SCREEN_TEXTURE, x, y, 0, 0, width, height, 820, 244, 1024, 1024);
     }
 
     @Override

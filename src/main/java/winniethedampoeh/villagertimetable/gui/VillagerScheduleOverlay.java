@@ -1,5 +1,6 @@
 package winniethedampoeh.villagertimetable.gui;
 
+import com.mojang.blaze3d.pipeline.RenderPipeline;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.MinecraftClient;
@@ -37,7 +38,7 @@ public class VillagerScheduleOverlay implements HudRenderCallback {
 
         int[] dims = getDrawDimensions();
 
-        drawContext.drawTexture(RenderLayer::getGuiTextured, icon, dims[0], dims[1], 0, 0, dims[2], dims[3], dims[2], dims[3]);
+        drawContext.drawTexture(RenderPipeline.builder().build(), icon, dims[0], dims[1], 0, 0, dims[2], dims[3], dims[2], dims[3]);
     }
 
     private Identifier getScheduleIcon() {
