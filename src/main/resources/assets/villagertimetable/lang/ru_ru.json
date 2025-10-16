@@ -19,7 +19,7 @@
   "options.villagertimetable.time_format.tooltip": "12 часов, 24 часа или тики",
   "options.villagertimetable.render_location.tooltip": "Где отображать текущий цикл жизни жителей, в пользовательском интерфейсе",
 
-  "category.villagertimetable": "Villager Timetable",
+  "key.category.minecraft.villagertimetable": "Villager Timetable",
 
   "key.villagertimetable.open_timetable": "Открыть расписание",
 

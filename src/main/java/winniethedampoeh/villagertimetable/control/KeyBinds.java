@@ -6,6 +6,7 @@ import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.option.KeyBinding;
 import net.minecraft.client.util.InputUtil;
 import net.minecraft.text.Text;
+import net.minecraft.util.Identifier;
 import org.lwjgl.glfw.GLFW;
 import winniethedampoeh.villagertimetable.VillagerTimetable;
 import winniethedampoeh.villagertimetable.gui.VillagerTimetableScreen;
@@ -13,15 +14,15 @@ import winniethedampoeh.villagertimetable.gui.VillagerTimetableScreen;
 public class KeyBinds {
 
         public static KeyBinding openTimetable;
+        public static KeyBinding.Category MOD_CATEGORY = new KeyBinding.Category(Identifier.of(VillagerTimetable.MODID));
 
         public static void registerKeyBinds(){
             openTimetable = KeyBindingHelper.registerKeyBinding(new KeyBinding(
                     "key." + VillagerTimetable.MODID + ".open_timetable",
                     InputUtil.Type.KEYSYM,
                     GLFW.GLFW_KEY_V,
-                    "category." + VillagerTimetable.MODID
+                    MOD_CATEGORY
             ));
-
 
             ClientTickEvents.END_CLIENT_TICK.register(client -> {
                 while (openTimetable.wasPressed()) {

@@ -19,7 +19,7 @@
   "options.villagertimetable.time_format.tooltip": "12h, 24h or ticks",
   "options.villagertimetable.render_location.tooltip": "Where to render the current villager cycle in your HUD",
 
-  "category.villagertimetable": "Villager Timetable",
+  "key.category.minecraft.villagertimetable": "Villager Timetable",
 
   "key.villagertimetable.open_timetable": "Open Timetable",
 
