@@ -2,33 +2,68 @@ package winniethedampoeh.villagertimetable;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.entity.ai.brain.Activity;
-import net.minecraft.entity.ai.brain.Schedule;
 
-public class Timetable {
+public class Timetable{
+
 
     public static Activity getCurrentActivity(VillagerType villagerType) {
-        MinecraftClient client = MinecraftClient.getInstance();
-        if (client == null) return Activity.IDLE;
-        if (client.world == null) {
-            VillagerTimetable.LOGGER.error("Could not access the client world");
-            return null;
-        }
+        /*  Since 1.21.11 the schedule is no longer visible from the client.
+            It can now be modified using datapacks. To keep this mod client side,
+            I will assume that the schedule was not changed using data packs.
+            */
+        assert MinecraftClient.getInstance().world != null;
+        long tick = MinecraftClient.getInstance().world.getTimeOfDay() % 24000;
 
-        int currentTime = (int) (client.world.getTimeOfDay() % 24000);
         switch (villagerType) {
             case CHILD -> {
-                return Schedule.VILLAGER_BABY.getActivityForTime(currentTime);
-            }
-            case EMPLOYED -> {
-                return Schedule.VILLAGER_DEFAULT.getActivityForTime(currentTime);
+                return BabyActivityAtTick(tick);
             }
             case UNEMPLOYED -> {
-                Activity activity = Schedule.VILLAGER_DEFAULT.getActivityForTime(currentTime);
-                if (activity.equals(Activity.WORK)) return Activity.IDLE;
-                return activity;
+                return UnemployedActivityAtTick(tick);
             }
+            case EMPLOYED -> {
+                return EmployedActivityAtTick(tick);
+            }
+            default -> throw new IllegalStateException("Unexpected value: " + villagerType);
         }
-        return Activity.IDLE;
+
+    }
+
+    private static Activity BabyActivityAtTick(long tick) {
+        if (tick < 10) {
+            return Activity.REST;
+        } else if (tick < 3000) {
+            return Activity.IDLE;
+        } else if (tick < 6000) {
+            return  Activity.PLAY;
+        } else if (tick < 10000) {
+            return Activity.IDLE;
+        } else if (tick < 12000) {
+            return Activity.PLAY;
+        } else {
+            return Activity.REST;
+        }
+    }
+
+    private static Activity UnemployedActivityAtTick(long tick) {
+        if (tick < 10) {
+            return Activity.REST;
+        } else if (tick < 9000) {
+            return Activity.IDLE;
+        } else if (tick < 11000) {
+            return Activity.MEET;
+        } else if (tick < 12000) {
+            return Activity.IDLE;
+        } else {
+            return Activity.REST;
+        }
+    }
+
+    private static Activity EmployedActivityAtTick(long tick) {
+       if (tick >= 2000 && tick < 9000) {
+           return Activity.WORK;
+       }
+       return UnemployedActivityAtTick(tick);
     }
 
     public enum VillagerType{
@@ -37,3 +72,4 @@ public class Timetable {
         CHILD
     }
 }
+
