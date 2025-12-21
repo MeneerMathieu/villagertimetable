@@ -1,13 +1,16 @@
+# Update Guide
+
+***
+
 How to update the project to the next Minecraft version.
 
 
 1. Update Gradle. You can't continue without updating Gradle. If you continue without updating Gradle, it will not update later.
 
-    ./gradlew wrapper --gradle-version latest --distribution-type bin
+    ```./gradlew wrapper --gradle-version latest --distribution-type bin```
 
 2. Update gradle.properties with info from https://fabricmc.net/develop and https://linkie.shedaniel.dev/
 3. Reload Gradle (This might take a while)
-4. Update Loom, also in build.gradle
-5. If code changes are needed, make them.
-6. Build the project and upload to Modrinth.
-7. Done :D
+4. If code changes are needed, make them.
+5. Build the project and upload to Modrinth.
+6. Done :D
