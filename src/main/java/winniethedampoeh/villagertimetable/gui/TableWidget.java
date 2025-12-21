@@ -1,13 +1,13 @@
 package winniethedampoeh.villagertimetable.gui;
 
-import net.minecraft.client.gl.RenderPipelines;
-import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.gui.screen.narration.NarrationMessageBuilder;
-import net.minecraft.client.gui.widget.ClickableWidget;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.components.AbstractWidget;
+import net.minecraft.client.gui.narration.NarrationElementOutput;
+import net.minecraft.client.renderer.RenderPipelines;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
 
-public class TableWidget extends ClickableWidget {
+public class TableWidget extends AbstractWidget {
     private final Identifier texture;
 
     private final int texture_x;
@@ -21,7 +21,7 @@ public class TableWidget extends ClickableWidget {
     private final int regionHeight;
     private final float scale;
 
-    public TableWidget(float scale, Identifier texture, int texureWidth, int textureHeight, int regionWidth, int regionHeight, int x, int y, int width, int height, int u, int v, Text message) {
+    public TableWidget(float scale, Identifier texture, int texureWidth, int textureHeight, int regionWidth, int regionHeight, int x, int y, int width, int height, int u, int v, Component message) {
         super((int) (x * scale), (int) (y * scale), (int) (width * scale), (int) (height * scale), message);
         this.texture = texture;
         this.u = u;
@@ -36,10 +36,10 @@ public class TableWidget extends ClickableWidget {
     }
 
     @Override
-    protected void renderWidget(DrawContext context, int mouseX, int mouseY, float delta) {
-        context.getMatrices().pushMatrix();
-        context.getMatrices().scale(scale, scale);
-        context.drawTexture(RenderPipelines.GUI_TEXTURED,
+    protected void renderWidget(GuiGraphics context, int mouseX, int mouseY, float delta) {
+        context.pose().pushMatrix();
+        context.pose().scale(scale, scale);
+        context.blit(RenderPipelines.GUI_TEXTURED,
                 texture,
                 texture_x,
                 texture_y,
@@ -51,11 +51,11 @@ public class TableWidget extends ClickableWidget {
                 regionHeight,
                 textureWidth,
                 textureHeight);
-        context.getMatrices().popMatrix();
+        context.pose().popMatrix();
     }
 
     @Override
-    protected void appendClickableNarrations(NarrationMessageBuilder builder) {
+    protected void updateWidgetNarration(NarrationElementOutput builder) {
 
     }
 }

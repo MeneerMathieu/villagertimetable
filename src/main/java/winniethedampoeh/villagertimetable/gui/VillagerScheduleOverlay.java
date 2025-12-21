@@ -1,32 +1,32 @@
 package winniethedampoeh.villagertimetable.gui;
 
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gl.RenderPipelines;
-import net.minecraft.client.gui.DrawContext;
-import net.minecraft.client.render.RenderTickCounter;
-import net.minecraft.entity.ai.brain.Activity;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.DeltaTracker;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.renderer.RenderPipelines;
+import net.minecraft.resources.Identifier;
+import net.minecraft.world.entity.schedule.Activity;
 import winniethedampoeh.villagertimetable.Timetable;
 import winniethedampoeh.villagertimetable.VillagerTimetable;
 import winniethedampoeh.villagertimetable.config.VillagerTimetableConfig;
 
 public class VillagerScheduleOverlay implements HudRenderCallback {
-    private static final Identifier SLEEPING = Identifier.tryParse(VillagerTimetable.MODID,
+    private static final Identifier SLEEPING = Identifier.tryBuild(VillagerTimetable.MODID,
             "textures/hud/sleeping.png");
-    private static final Identifier IDLE = Identifier.tryParse(VillagerTimetable.MODID,
+    private static final Identifier IDLE = Identifier.tryBuild(VillagerTimetable.MODID,
             "textures/hud/idle.png");
-    private static final Identifier WORKING = Identifier.tryParse(VillagerTimetable.MODID,
+    private static final Identifier WORKING = Identifier.tryBuild(VillagerTimetable.MODID,
             "textures/hud/working.png");
-    private static final Identifier MEET = Identifier.tryParse(VillagerTimetable.MODID,
+    private static final Identifier MEET = Identifier.tryBuild(VillagerTimetable.MODID,
             "textures/hud/meet.png");
-    private static final Identifier PLAYING = Identifier.tryParse(VillagerTimetable.MODID,
+    private static final Identifier PLAYING = Identifier.tryBuild(VillagerTimetable.MODID,
             "textures/hud/playing.png");
 
     @Override
-    public void onHudRender(DrawContext drawContext, RenderTickCounter tickCounter) {
+    public void onHudRender(GuiGraphics drawContext, DeltaTracker tickCounter) {
         if(!VillagerTimetableConfig.INSTANCE.guiRendering.get()) return;
-        if(MinecraftClient.getInstance().options.hudHidden) return;
+        if(Minecraft.getInstance().options.hideGui) return;
         Identifier icon = getScheduleIcon();
 
 //        RenderSystem.setShader(GameRenderer::getPositionTexProgram);
@@ -35,7 +35,7 @@ public class VillagerScheduleOverlay implements HudRenderCallback {
 
         int[] dims = getDrawDimensions();
 
-        drawContext.drawTexture(RenderPipelines.GUI_TEXTURED, icon, dims[0], dims[1], 0, 0, dims[2], dims[3], dims[2], dims[3]);
+        drawContext.blit(RenderPipelines.GUI_TEXTURED, icon, dims[0], dims[1], 0, 0, dims[2], dims[3], dims[2], dims[3]);
     }
 
     private Identifier getScheduleIcon() {
@@ -54,7 +54,7 @@ public class VillagerScheduleOverlay implements HudRenderCallback {
     }
 
     private int[] getDrawDimensions() {
-        MinecraftClient client = MinecraftClient.getInstance();
+        Minecraft client = Minecraft.getInstance();
         if (client == null) {
             return new int[] {0, 0, 0, 0};
         }
@@ -62,8 +62,8 @@ public class VillagerScheduleOverlay implements HudRenderCallback {
         int[] dimensions = new int[4];
         switch(VillagerTimetableConfig.INSTANCE.renderLocation.get()){
             case HOTBAR_LEFT -> {
-                int x = client.getWindow().getScaledWidth() / 2;
-                int y = client.getWindow().getScaledHeight();
+                int x = client.getWindow().getGuiScaledWidth() / 2;
+                int y = client.getWindow().getGuiScaledHeight();
                 dimensions[0] = x - 91 - 18 - 2;
                 dimensions[1] = y - 18 - 2;
                 dimensions[2] = 18;
@@ -71,8 +71,8 @@ public class VillagerScheduleOverlay implements HudRenderCallback {
                 return dimensions;
             }
             case HOTBAR_RIGHT -> {
-                int x = client.getWindow().getScaledWidth() / 2;
-                int y = client.getWindow().getScaledHeight();
+                int x = client.getWindow().getGuiScaledWidth() / 2;
+                int y = client.getWindow().getGuiScaledHeight();
                 dimensions[0] = x + 91 + 2;
                 dimensions[1] = y - 18 - 2;
                 dimensions[2] = 18;
@@ -80,7 +80,7 @@ public class VillagerScheduleOverlay implements HudRenderCallback {
                 return dimensions;
             }
             case NORTH_EAST -> {
-                dimensions[0] = client.getWindow().getScaledWidth() - 22 - 2;
+                dimensions[0] = client.getWindow().getGuiScaledWidth() - 22 - 2;
                 dimensions[1] = 2;
                 dimensions[2] = 22;
                 dimensions[3] = 22;
@@ -94,15 +94,15 @@ public class VillagerScheduleOverlay implements HudRenderCallback {
                 return dimensions;
             }
             case SOUTH_EAST -> {
-                dimensions[0] = client.getWindow().getScaledWidth() - 22 - 2;
-                dimensions[1] = client.getWindow().getScaledHeight() - 22 - 2;
+                dimensions[0] = client.getWindow().getGuiScaledWidth() - 22 - 2;
+                dimensions[1] = client.getWindow().getGuiScaledHeight() - 22 - 2;
                 dimensions[2] = 22;
                 dimensions[3] = 22;
                 return dimensions;
             }
             case SOUTH_WEST -> {
                 dimensions[0] = 2;
-                dimensions[1] = client.getWindow().getScaledHeight() - 22 - 2;
+                dimensions[1] = client.getWindow().getGuiScaledHeight() - 22 - 2;
                 dimensions[2] = 22;
                 dimensions[3] = 22;
                 return dimensions;

@@ -1,32 +1,32 @@
 package winniethedampoeh.villagertimetable.control;
 
+import com.mojang.blaze3d.platform.InputConstants;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.option.KeyBinding;
-import net.minecraft.client.util.InputUtil;
-import net.minecraft.text.Text;
-import net.minecraft.util.Identifier;
+import net.minecraft.client.KeyMapping;
+import net.minecraft.client.Minecraft;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.Identifier;
 import org.lwjgl.glfw.GLFW;
 import winniethedampoeh.villagertimetable.VillagerTimetable;
 import winniethedampoeh.villagertimetable.gui.VillagerTimetableScreen;
 
 public class KeyBinds {
 
-        public static KeyBinding openTimetable;
-        public static KeyBinding.Category MOD_CATEGORY = new KeyBinding.Category(Identifier.of(VillagerTimetable.MODID));
+        public static KeyMapping openTimetable;
+        public static KeyMapping.Category MOD_CATEGORY = new KeyMapping.Category(Identifier.parse(VillagerTimetable.MODID));
 
         public static void registerKeyBinds(){
-            openTimetable = KeyBindingHelper.registerKeyBinding(new KeyBinding(
+            openTimetable = KeyBindingHelper.registerKeyBinding(new KeyMapping(
                     "key." + VillagerTimetable.MODID + ".open_timetable",
-                    InputUtil.Type.KEYSYM,
+                    InputConstants.Type.KEYSYM,
                     GLFW.GLFW_KEY_V,
                     MOD_CATEGORY
             ));
 
             ClientTickEvents.END_CLIENT_TICK.register(client -> {
-                while (openTimetable.wasPressed()) {
-                    MinecraftClient.getInstance().setScreen(new VillagerTimetableScreen(Text.of("Timetable")));
+                while (openTimetable.consumeClick()) {
+                    Minecraft.getInstance().setScreen(new VillagerTimetableScreen(Component.nullToEmpty("Timetable")));
                 }
             });
         }

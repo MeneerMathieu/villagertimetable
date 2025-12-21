@@ -1,7 +1,7 @@
 package winniethedampoeh.villagertimetable;
 
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.entity.ai.brain.Activity;
+import net.minecraft.client.Minecraft;
+import net.minecraft.world.entity.schedule.Activity;
 
 public class Timetable{
 
@@ -11,8 +11,8 @@ public class Timetable{
             It can now be modified using datapacks. To keep this mod client side,
             I will assume that the schedule was not changed using data packs.
             */
-        assert MinecraftClient.getInstance().world != null;
-        long tick = MinecraftClient.getInstance().world.getTimeOfDay() % 24000;
+        assert Minecraft.getInstance().level != null;
+        long tick = Minecraft.getInstance().level.getDayTime() % 24000;
 
         switch (villagerType) {
             case CHILD -> {
