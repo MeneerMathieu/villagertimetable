@@ -1,7 +1,7 @@
 package winniethedampoeh.villagertimetable.gui;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.input.KeyEvent;
@@ -47,16 +47,16 @@ public class VillagerTimetableScreen extends Screen {
     }
 
     @Override
-    public void render(GuiGraphics context, int mouseX, int mouseY, float delta) {
-        super.render(context, mouseX, mouseY, delta); // Drawables
+    public void extractRenderState(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float delta) {
+        super.extractRenderState(graphics, mouseX, mouseY, delta); // Drawables
 
         drawTimeTable();
-        drawTimeIndicator(context);
-        drawVillagers(context);
-        drawTimeValues(context);
+        drawTimeIndicator(graphics);
+        drawVillagers(graphics);
+        drawTimeValues(graphics);
     }
 
-    private void drawVillagers(GuiGraphics context) {
+    private void drawVillagers(GuiGraphicsExtractor context) {
         context.pose().pushMatrix();
         context.pose().scale(scale, scale);
 
@@ -137,9 +137,9 @@ public class VillagerTimetableScreen extends Screen {
         return (int) ((1 - frac) * i1 + frac * i2);
     }
 
-    private void drawTimeIndicator(GuiGraphics context) {
+    private void drawTimeIndicator(GuiGraphicsExtractor context) {
         assert Minecraft.getInstance().level != null;
-        float timeFrac = ((Minecraft.getInstance().level.getDayTime() + 6000) % 24000)/ 24000f;
+        float timeFrac = ((Minecraft.getInstance().level.getOverworldClockTime() + 6000) % 24000)/ 24000f;
 
         int time_x = intLerp(46, 810, timeFrac);
         context.pose().pushMatrix();
@@ -154,7 +154,7 @@ public class VillagerTimetableScreen extends Screen {
         context.pose().popMatrix();
     }
 
-    private void drawTimeValues(GuiGraphics context){
+    private void drawTimeValues(GuiGraphicsExtractor context){
         context.pose().pushMatrix();
         context.pose().scale(scale, scale);
 
@@ -187,16 +187,16 @@ public class VillagerTimetableScreen extends Screen {
             }
 
             int offset = (int) ((32 - font.width(timeText) ) / (1 / scale));
-            context.drawString(font, timeText, (int) ((1 / scale) * x + 46 + offset + i * 32), (int)( (1 / scale) * y + 9), 0xFF4a4a4a, false);
+            context.text(font, timeText, (int) ((1 / scale) * x + 46 + offset + i * 32), (int)( (1 / scale) * y + 9), 0xFF4a4a4a, false);
         }
         context.pose().popMatrix();
     }
 
     @Override
-    public void renderBackground(GuiGraphics context, int mouseX, int mouseY, float delta) {
-        super.renderBackground(context, mouseX, mouseY, delta);
+    public void extractBackground(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float delta) {
+        super.extractBackground(graphics, mouseX, mouseY, delta);
 
-        context.blit(RenderPipelines.GUI_TEXTURED, SCREEN_TEXTURE, x, y, 0, 0, width, height, 820, 244, 1024, 1024);
+        graphics.blit(RenderPipelines.GUI_TEXTURED, SCREEN_TEXTURE, x, y, 0, 0, width, height, 820, 244, 1024, 1024);
     }
 
     @Override

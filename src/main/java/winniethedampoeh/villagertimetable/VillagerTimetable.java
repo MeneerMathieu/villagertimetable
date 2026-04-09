@@ -5,7 +5,8 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import net.fabricmc.api.ClientModInitializer;
 
-import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
+import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElementRegistry;
+import net.minecraft.resources.Identifier;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import winniethedampoeh.villagertimetable.config.VillagerTimetableConfig;
@@ -29,7 +30,7 @@ public class VillagerTimetable implements ClientModInitializer {
 		// This code runs as soon as Minecraft is in a mod-load-ready state.
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
-		HudRenderCallback.EVENT.register(new VillagerScheduleOverlay());
+		HudElementRegistry.addLast(Identifier.parse(MODID), new VillagerScheduleOverlay());
 
 		KeyBinds.registerKeyBinds();
 

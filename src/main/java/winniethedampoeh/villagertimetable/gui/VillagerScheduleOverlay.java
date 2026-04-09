@@ -1,9 +1,9 @@
 package winniethedampoeh.villagertimetable.gui;
 
-import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
+import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElement;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.schedule.Activity;
@@ -11,7 +11,7 @@ import winniethedampoeh.villagertimetable.Timetable;
 import winniethedampoeh.villagertimetable.VillagerTimetable;
 import winniethedampoeh.villagertimetable.config.VillagerTimetableConfig;
 
-public class VillagerScheduleOverlay implements HudRenderCallback {
+public class VillagerScheduleOverlay implements HudElement {
     private static final Identifier SLEEPING = Identifier.tryBuild(VillagerTimetable.MODID,
             "textures/hud/sleeping.png");
     private static final Identifier IDLE = Identifier.tryBuild(VillagerTimetable.MODID,
@@ -24,7 +24,7 @@ public class VillagerScheduleOverlay implements HudRenderCallback {
             "textures/hud/playing.png");
 
     @Override
-    public void onHudRender(GuiGraphics drawContext, DeltaTracker tickCounter) {
+    public void extractRenderState(GuiGraphicsExtractor extractor, DeltaTracker tickCounter) {
         if(!VillagerTimetableConfig.INSTANCE.guiRendering.get()) return;
         if(Minecraft.getInstance().options.hideGui) return;
         Identifier icon = getScheduleIcon();
@@ -35,7 +35,7 @@ public class VillagerScheduleOverlay implements HudRenderCallback {
 
         int[] dims = getDrawDimensions();
 
-        drawContext.blit(RenderPipelines.GUI_TEXTURED, icon, dims[0], dims[1], 0, 0, dims[2], dims[3], dims[2], dims[3]);
+        extractor.blit(RenderPipelines.GUI_TEXTURED, icon, dims[0], dims[1], 0, 0, dims[2], dims[3], dims[2], dims[3]);
     }
 
     private Identifier getScheduleIcon() {

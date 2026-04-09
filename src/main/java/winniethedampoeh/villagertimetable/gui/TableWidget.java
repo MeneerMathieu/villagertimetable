@@ -1,6 +1,6 @@
 package winniethedampoeh.villagertimetable.gui;
 
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.client.renderer.RenderPipelines;
@@ -36,10 +36,10 @@ public class TableWidget extends AbstractWidget {
     }
 
     @Override
-    protected void renderWidget(GuiGraphics context, int mouseX, int mouseY, float delta) {
-        context.pose().pushMatrix();
-        context.pose().scale(scale, scale);
-        context.blit(RenderPipelines.GUI_TEXTURED,
+    protected void extractWidgetRenderState(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float a) {
+        graphics.pose().pushMatrix();
+        graphics.pose().scale(scale, scale);
+        graphics.blit(RenderPipelines.GUI_TEXTURED,
                 texture,
                 texture_x,
                 texture_y,
@@ -51,7 +51,7 @@ public class TableWidget extends AbstractWidget {
                 regionHeight,
                 textureWidth,
                 textureHeight);
-        context.pose().popMatrix();
+        graphics.pose().popMatrix();
     }
 
     @Override

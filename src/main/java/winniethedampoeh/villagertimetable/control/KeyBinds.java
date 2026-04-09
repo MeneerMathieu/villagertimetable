@@ -2,7 +2,7 @@ package winniethedampoeh.villagertimetable.control;
 
 import com.mojang.blaze3d.platform.InputConstants;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
-import net.fabricmc.fabric.api.client.keybinding.v1.KeyBindingHelper;
+import net.fabricmc.fabric.api.client.keymapping.v1.KeyMappingHelper;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
@@ -17,7 +17,7 @@ public class KeyBinds {
         public static KeyMapping.Category MOD_CATEGORY = new KeyMapping.Category(Identifier.parse(VillagerTimetable.MODID));
 
         public static void registerKeyBinds(){
-            openTimetable = KeyBindingHelper.registerKeyBinding(new KeyMapping(
+            openTimetable = KeyMappingHelper.registerKeyMapping(new KeyMapping(
                     "key." + VillagerTimetable.MODID + ".open_timetable",
                     InputConstants.Type.KEYSYM,
                     GLFW.GLFW_KEY_V,

@@ -12,7 +12,7 @@ public class Timetable{
             I will assume that the schedule was not changed using data packs.
             */
         assert Minecraft.getInstance().level != null;
-        long tick = Minecraft.getInstance().level.getDayTime() % 24000;
+        long tick = Minecraft.getInstance().level.getOverworldClockTime() % 24000;
 
         switch (villagerType) {
             case CHILD -> {

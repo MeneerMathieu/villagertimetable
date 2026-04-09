@@ -3,7 +3,8 @@ package winniethedampoeh.villagertimetable.config;
 import java.util.EnumSet;
 import java.util.List;
 import java.util.Set;
-import net.minecraft.client.gui.GuiGraphics;
+
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.screens.Screen;
@@ -50,10 +51,11 @@ public class VillagerTimetableConfigScreen extends Screen {
     }
 
     @Override
-    public void render(GuiGraphics context, int mouseX, int mouseY, float delta) {
-        super.render(context, mouseX, mouseY, delta);
-        context.drawCenteredString(this.font, this.title, this.width / 2, 5, 0xffffff);
+    public void extractRenderState(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float delta) {
+        super.extractRenderState(graphics, mouseX, mouseY, delta);
+        graphics.centeredText(this.font, this.title, this.width / 2, 5, 0xffffff);
     }
+
 
     @Override
     public void onClose() {
