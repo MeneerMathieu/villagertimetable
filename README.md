@@ -30,7 +30,7 @@ ModMenu is supported for changing settings.
 
 <img src="https://cdn.modrinth.com/data/rmQAsW9m/images/14273c044fbca5181a874a0e77aeeeee21e67bd6.png" alt="preview">
 
-<img src="https://cdn.modrinth.com/data/rmQAsW9m/images/4f5ebd3051200f615fe73014c50e0af3c74c01ce.png" alt="previeuw">
+<img src="https://cdn.modrinth.com/data/rmQAsW9m/images/4f5ebd3051200f615fe73014c50e0af3c74c01ce.png" alt="preview">
 
 # Development
 
