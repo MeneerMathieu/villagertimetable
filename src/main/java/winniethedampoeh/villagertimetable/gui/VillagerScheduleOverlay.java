@@ -26,7 +26,7 @@ public class VillagerScheduleOverlay implements HudElement {
     @Override
     public void extractRenderState(GuiGraphicsExtractor extractor, DeltaTracker tickCounter) {
         if(!VillagerTimetableConfig.INSTANCE.guiRendering.get()) return;
-        if(Minecraft.getInstance().options.hideGui) return;
+        if(Minecraft.getInstance().gui.hud.isHidden()) return;
         Identifier icon = getScheduleIcon();
 
 //        RenderSystem.setShader(GameRenderer::getPositionTexProgram);

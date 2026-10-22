@@ -26,7 +26,7 @@ public class KeyBinds {
 
             ClientTickEvents.END_CLIENT_TICK.register(client -> {
                 while (openTimetable.consumeClick()) {
-                    Minecraft.getInstance().setScreen(new VillagerTimetableScreen(Component.nullToEmpty("Timetable")));
+                    Minecraft.getInstance().gui.setScreen(new VillagerTimetableScreen(Component.nullToEmpty("Timetable")));
                 }
             });
         }
